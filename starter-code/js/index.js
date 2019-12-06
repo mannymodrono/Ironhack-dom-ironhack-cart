@@ -2,10 +2,14 @@ var $cart = document.querySelector('#cart tbody');
 var $calc = document.getElementById('calc');
 
 function updateSubtot($product) {
-  // Iteration 1.1
+  let quantity = document.getElementById("qt").value;
+  let price = document.getElementById('price').innerHTML;
+  let subtotal = quantity * price;
+  let printedSub = document.getElementById('sub').innerHTML = subtotal;
+  return printedSub;
 }
 
 function calcAll() {
-  // Iteration 1.2
+  document.getElementById('total').innerHTML = updateSubtot();
 }
 $calc.onclick = calcAll;

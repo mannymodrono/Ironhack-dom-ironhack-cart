@@ -25,17 +25,42 @@
         </td>
     
         <td class="pu">
-          $<span>25.00</span>
+          $<span id = 'price'>25.00</span>
         </td>
     
         <td class="qty">
           <label>
-            <input type="number" value="0" min="0">
+            <input id='qt' type="number" value="0" min="0">
           </label>
         </td>
     
         <td class="subtot">
-          $<span>0</span>
+          $<span id='sub'>0</span>
+        </td>
+    
+        <td class="rm">
+          <button class="btn btn-delete">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+    <tbody>
+      <tr class="product">
+        <td class="name">
+          <span>Iron Shirt</span>
+        </td>
+    
+        <td class="pu">
+          $<span id = 'shirtPrice'>25.00</span>
+        </td>
+    
+        <td class="qty">
+          <label>
+            <input id='shirtQt' type="number" value="0" min="0">
+          </label>
+        </td>
+    
+        <td class="subtot">
+          $<span id='shirtSub'>0</span>
         </td>
     
         <td class="rm">
@@ -65,7 +90,7 @@
     <button id="calc" class="btn btn-success">Calculate prices</button>
   </p>
 
-  <h2>Total: $<span>0</span></h2>
+  <h2>Total: $<span id="total">0</span></h2>
 
   <script type="text/javascript" src="./js/index.js"></script>
 </body>
