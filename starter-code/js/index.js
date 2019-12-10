@@ -1,5 +1,9 @@
 var $cart = document.querySelector('#cart tbody');
 var $calc = document.getElementById('calc');
+let inputs = document.getElementsByTagName('input');
+console.log(inputs);
+
+inputs.onchange = updateSubtot();
 
 function updateSubtot($product) {
   // let quantity = document.getElementById("qt").value;
