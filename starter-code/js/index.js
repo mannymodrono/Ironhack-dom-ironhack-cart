@@ -1,50 +1,70 @@
 var $cart = document.querySelector('#cart tbody');
 var $calc = document.getElementById('calc');
-let inputs = document.getElementsByTagName('input');
-console.log(inputs);
-
-inputs.onchange = updateSubtot();
+let rmButton = document.getElementsByClassName('rm');
+let createButton = document.getElementById('create');
 
 function updateSubtot($product) {
-  // let quantity = document.getElementById("qt").value;
-  // let price = document.getElementById('price').innerHTML;
-  // let subtotal = quantity * price;
-  // let printedSub = document.getElementById('sub').innerHTML = subtotal;
-  // return printedSub;
+  console.log("Button CLicked")
 
   let products = [...document.getElementsByClassName('product')];
 
   products.forEach(product => {
     let qty = product.children[2].children[0].children[0].value;
-    console.log(qty)
+    console.log("Quantity", qty)
     let price = product.children[1].children[0].innerHTML;
-    console.log(price)
+    console.log("Price", price)
+
     let sub = product.children[3].children[0].innerHTML;
-    console.log(sub)
+    console.log("Subtotal", sub)
 
     sub = qty * price;
     product.children[3].children[0].innerHTML = sub;
+    console.log("New Subtotal", sub)
+
   });
 }
 
 function calcAll() {
-  
-  // let products = [...document.getElementsByClassName('product')];
-  // let total = 0;
+  updateSubtot();
+  console.log('calc all ran')
 
-  // products.forEach(product => {
-  //   let qty = product.children[2].children[0].children[0].value;
-  //   console.log(qty)
-  //   let price = product.children[1].children[0].innerHTML;
-  //   console.log(price)
-  //   let sub = product.children[3].children[0].innerHTML;
-  //   console.log(sub)
+  let products = [...document.getElementsByClassName('product')];
+  let total = 0;
 
-  //   sub = qty * price;
-  //   total += sub;
-  // });
+  products.forEach(product => {
+    let sub = Number(product.children[3].children[0].innerHTML);
+    total += sub;
+  });
 
-  // document.getElementById('total').innerHTML = total;
+  document.getElementById('total').innerHTML = total;
 }
 
-$calc.onclick = calcAll();
+function deleteItem(button) {
+  console.log(button.parentNode)
+  button.parentNode.parentNode.removeChild(button.parentNode);
+}
+
+function create() {
+  let product = document.querySelector('.product');
+  let clone = product.cloneNode(true);
+  let t = document.querySelector('tbody');
+  document.body.appendChild(clone)
+  t.insertBefore(clone, product)
+
+  let price = document.getElementById('numInput').value;
+  let name = document.getElementById('textInput').value
+
+  clone.children[1].children[0].innerHTML = price;
+  clone.children[0].children[0].innerHTML = name;
+}
+
+
+$calc.onclick = calcAll;
+
+for (const button of rmButton) {
+  button.onclick = function () {
+    deleteItem(button);
+  }
+}
+
+createButton.onclick = create;
