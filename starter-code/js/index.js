@@ -40,9 +40,10 @@ function calcAll() {
 }
 
 function deleteItem(button) {
-  console.log(button.parentNode)
+  console.log(button)
   button.parentNode.parentNode.removeChild(button.parentNode);
 }
+
 
 function create() {
   let product = document.querySelector('.product');
@@ -63,7 +64,12 @@ $calc.onclick = calcAll;
 
 for (const button of rmButton) {
   button.onclick = function () {
-    deleteItem(button);
+    if (document.getElementsByClassName('product').length > 0){
+      deleteItem(button);
+    }
+    else {
+      alert('You need at least one item in the cart at all times.')
+    }
   }
 }
 
